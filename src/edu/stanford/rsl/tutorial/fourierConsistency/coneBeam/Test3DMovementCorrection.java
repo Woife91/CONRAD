@@ -56,8 +56,6 @@ public class Test3DMovementCorrection {
 			e.printStackTrace();
 		}
 		
-		//NumericPointwiseOperators.fill(projections,0f);
-		//projections.setAtIndex(0, 0, 0, 1);
 		projections.show("Data from file");
 		
 		// get configuration
@@ -79,12 +77,15 @@ public class Test3DMovementCorrection {
 			}
 		}
 
+		// could be a start parameter
+		boolean naive = true;
 		
-		MovementCorrection3D mc = new MovementCorrection3D(projections, conf,false);
+		MovementCorrection3D mc = new MovementCorrection3D(projections, conf,naive);
 		mc.setShiftVector(testShift);
 		mc.doFFT2();
 		//mc.getData().show("2D-Fouriertransformed before transposing");
 		mc.transposeData();
+
 //		for(int i = 0; i < 10000; i++){
 //			mc.parallelShiftOptimized();
 //			System.out.println("Runde:" + i);
@@ -111,60 +112,10 @@ public class Test3DMovementCorrection {
 		}
 		result.show("Result shift vector");
 		
-//		for(int i = 0; i < 2; i++){
-//			
-//			mc.doFFTAngleCL();
-//			//mc.get3dFourier().getRealGrid().show("Real Grid after forward " + i);
-//			//mc.get3dFourier().getImagGrid().show("Imag Grid after forward " + i);
-//			//mc.get3dFourier().getRealGrid().show();
-//			ComplexGrid3D  fftCLGrid = mc.get3dFourier();
-//	//		mc.doFFTAngle();
-//	//		ComplexGrid3D fftGrid = mc.get2dFourierTransposedData();
-//	//		mc.doiFFTAngle();
-//			Grid2D mask = conf.getMask();
-//			float sumCL = 0;
-//			float sumCPU = 0;
-//			int counter = 0;
-//			
-//			for(int proj = 0; proj < fftCLGrid.getSize()[0]; proj++){
-//				for(int u = 0; u < fftCLGrid.getSize()[1]; u++){
-//					if(mask.getAtIndex(proj, u) == 1){
-//						counter++;
-//						for(int v = 0; v < fftCLGrid.getSize()[2]; v++){
-//							sumCL += fftCLGrid.getAtIndex(proj, u, v).getReal();
-//	//						sumCPU += fftGrid.getAtIndex(proj, u, v).getReal();
-//						} 
-//					}
-//				}
-//			}
-//			System.out.println("Anzahl erkannte 1 in Maske: " + counter);
-//			System.out.println("Anzahl v: " + fftCLGrid.getSize()[2]);
-//			int numElCl = fftCLGrid.getNumberOfElements();
-//	//		int numEl = fftGrid.getNumberOfElements();
-//			System.out.println("CLGrid size: " + numElCl);// + ", cpuGrid size:" + numEl);
-//			//sumCL /= numElCl;
-//			//sumCPU /= numEl;
-//			System.out.println("normalized sum cl: "+ sumCL);// + ", sum cpu" + sumCPU);
-//			//mc.doFFTAngle();
-//			//mc.get2dFourierTransposedData().show("FFT");
-//			//mc.get3dFourier().show("DFT");
-//			mc.doiFFTAngleCL();
-//		}
+
 		
 		//mc.get2dFourierTransposedData().show("after angle backtransform");
 		
-//		
-////		//mc.computeOptimalShift();
-		//mc.applyShift();
-//		long time = System.currentTimeMillis();
-//		for(int i = 0; i < 30; i++){
-//			mc.parallelShiftOptimized();
-//		}
-//		time = System.currentTimeMillis() - time;
-//		System.out.println("complete time for 30 shifts: " + time);
-//		time /= 30;
-//		System.out.println("average time per shift:" + time);
-////		
 		mc.backTransposeData();
 //		//mc.getData().show("2D-Fouriertransformed after transposing");
 		mc.doiFFT2();
@@ -174,3 +125,8 @@ public class Test3DMovementCorrection {
 	}
 	
 }
+
+/*
+ * Copyright (C) 2015 - Wolfgang Aichinger 
+ * CONRAD is developed as an Open Source project under the GNU General Public License (GPL).
+*/

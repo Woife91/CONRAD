@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 - Martin Berger
+ * Copyright (C) 2014-2015 - Martin Berger and Wolfgang Aichinger
  * CONRAD is developed as an Open Source project under the GNU General Public License (GPL).
 */
 
@@ -19,21 +19,6 @@ inline float getMagnitude(cfloat a){
   return sqrt(a.x*a.x + a.y*a.y);
 }
 
-/*float2 fft(__private const float * x,__private const float * dftMat, uint proj, uint u, uint v,uint  n0, uint n1,uint n2){
-  float2 value = (float2)(0,0);
-  for(int k = 0; k < n0; k++){
-    int offSetA = (proj * n0 + k)*2;
-    float2 elementA = (float2)(dftMat[offSetA], dftMat[offSetA + 1]);
-    
-    int offSetB = (v*n0*n1 + u*n1 + k)*2;
-    float2 elementB = (float2)(x[offSetB], x[offSetB + 1]);
-    value = add(value, cmult(elementA, elementB));
-  }
-  
-  return value;
-  
-}
-*/
 
 // Kernel for part 1 of dot product, version 3.
 // Please see http://developer.amd.com/community/blog/2012/07/05/efficient-dot-product-implementation-using-persistent-threads/ for detailed explanation
@@ -87,14 +72,12 @@ void sumFFTEnergy(
 		for(int k = 0; k < n0; k++){
 		  int offSetA = (proj * n0 + k)*2;
 		  float2 elementA = (float2)(dftMat[offSetA], dftMat[offSetA + 1]);
-    	  
-    	  // ERROR HAPPENS SOMEWHERE HERE
 		  int offSetB = (v*n0*n1 + u*n0 + k)*2;
 		  float2 elementB = (float2)(x[offSetB], x[offSetB + 1]);
 		  value = add(value, cmult(elementA, elementB));
 		}
 	     
-		float pixEnergy = getMagnitude( value);
+		float pixEnergy = getMagnitude(value);
 		
 		priv_val = pixEnergy; // read the global memory
 		//****************************************************************************************

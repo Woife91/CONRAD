@@ -92,3 +92,8 @@ kernel void dftMatrixMul(global float* C, global float* A, global float* B,
   C[offSetC] = value.x;
   C[offSetC +1 ] = value.y;
 }
+
+/*
+ * Copyright (C) 2015 - Wolfgang Aichinger 
+ * CONRAD is developed as an Open Source project under the GNU General Public License (GPL).
+*/

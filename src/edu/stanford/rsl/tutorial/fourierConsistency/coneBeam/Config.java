@@ -314,3 +314,8 @@ public class Config {
 	
 
 }
+
+/*
+ * Copyright (C) 2015 - Wolfgang Aichinger 
+ * CONRAD is developed as an Open Source project under the GNU General Public License (GPL).
+*/

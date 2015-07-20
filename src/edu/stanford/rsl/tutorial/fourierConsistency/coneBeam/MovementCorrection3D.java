@@ -3,23 +3,17 @@ package edu.stanford.rsl.tutorial.fourierConsistency.coneBeam;
 import java.io.IOException;
 import java.nio.FloatBuffer;
 
-import edu.stanford.rsl.conrad.data.generic.GenericPointwiseOperators;
 import edu.stanford.rsl.conrad.data.generic.complex.ComplexGrid2D;
 import edu.stanford.rsl.conrad.data.generic.complex.ComplexGrid3D;
 import edu.stanford.rsl.conrad.data.generic.complex.ComplexPointwiseOperators;
 import edu.stanford.rsl.conrad.data.generic.complex.Fourier;
 import edu.stanford.rsl.conrad.data.generic.datatypes.Complex;
-import edu.stanford.rsl.conrad.data.generic.complex.ComplexGrid1D;
 import edu.stanford.rsl.conrad.data.numeric.Grid1D;
 import edu.stanford.rsl.conrad.data.numeric.Grid2D;
 import edu.stanford.rsl.conrad.data.numeric.Grid3D;
-import edu.stanford.rsl.conrad.data.numeric.NumericGrid;
-import edu.stanford.rsl.conrad.data.numeric.NumericGridOperator;
 import edu.stanford.rsl.conrad.data.numeric.NumericPointwiseOperators;
 import edu.stanford.rsl.conrad.data.numeric.opencl.OpenCLGrid1D;
 import edu.stanford.rsl.conrad.data.numeric.opencl.OpenCLGrid2D;
-import edu.stanford.rsl.conrad.data.numeric.opencl.OpenCLGrid3D;
-import edu.stanford.rsl.conrad.geometry.shapes.simple.PointND;
 import edu.stanford.rsl.conrad.opencl.OpenCLUtil;
 import edu.stanford.rsl.jpop.FunctionOptimizer;
 import edu.stanford.rsl.jpop.GradientOptimizableFunction;
@@ -29,7 +23,6 @@ import com.jogamp.opencl.CLBuffer;
 import com.jogamp.opencl.CLCommandQueue;
 import com.jogamp.opencl.CLContext;
 import com.jogamp.opencl.CLDevice;
-import com.jogamp.opencl.CLImage2d;
 import com.jogamp.opencl.CLKernel;
 import com.jogamp.opencl.CLMemory.Mem;
 import com.jogamp.opencl.CLProgram;
@@ -730,5 +723,8 @@ public class MovementCorrection3D {
 	}
 }
 
-
+/*
+ * Copyright (C) 2015 - Wolfgang Aichinger 
+ * CONRAD is developed as an Open Source project under the GNU General Public License (GPL).
+*/
 
